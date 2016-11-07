@@ -1,12 +1,18 @@
 package com.example.koshibaryouta.marketstop;
 
+import android.content.pm.PackageManager;
 import android.media.browse.MediaBrowser;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.PlaceLikelihood;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 
 public class MainActivity
@@ -44,7 +50,27 @@ public class MainActivity
 
     //接続成功時に呼ばれる
     @Override
-    public void onConnected(Bundle bundle) {Log.v("接続", "Connected");}
+    public void onConnected(Bundle bundle) {
+
+        Log.v("接続", "Connected");
+        PendingResult<PlaceLikelihoodBuffer> result = null;
+        try {
+            result = Places.PlaceDetectionApi.getCurrentPlace( mGoogleApiClient , null );
+        } catch (SecurityException e) {
+            Log.e("PERMISSION_EXCEPTION","PERMISSION_NOT_GRANTED");
+        }
+        result.setResultCallback( new ResultCallback<PlaceLikelihoodBuffer>() {
+            @Override
+            public void onResult( PlaceLikelihoodBuffer likelyPlaces ) {
+                for ( PlaceLikelihood placeLikelihood : likelyPlaces ) {
+                    Log.i("PickerTest", String.format( "Place '%s' has likelihood: %g",
+                            placeLikelihood.getPlace().getName(),
+                            placeLikelihood.getLikelihood()) );
+                }
+                likelyPlaces.release();
+            }
+        });
+    }
 
     // 接続が中断された時に呼ばれる。原因は引数で渡される
     @Override
