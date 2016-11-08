@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +26,8 @@ public class MainActivity
 
         final StringBuilder urlString = new StringBuilder();
         urlString.append("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        urlString.append("location=34.6682532,135.6180929");
-        urlString.append("&radius=500");
+        urlString.append("location=34.6954798,135.6156105");
+        urlString.append("&radius=1000");
         urlString.append("&types=grocery_or_supermarket");
         urlString.append("&key=AIzaSyBVBUGCXX4Ot7z8CP4ynTkWXWffDF9QB2k");
         new Thread(new Runnable() {
@@ -36,7 +38,9 @@ public class MainActivity
                     HttpURLConnection con = (HttpURLConnection)url.openConnection();
                     con.connect();
                     String str = InputStreamToString(con.getInputStream());
-                    Log.d("HTTP", str);
+                    // JSONObject に変換します
+                    JSONObject json = new JSONObject(str);
+                    Log.d("HTTP", json.toString(4));
                 } catch(Exception ex) {
                     Log.d("ERROR", "" + ex);
                 }
