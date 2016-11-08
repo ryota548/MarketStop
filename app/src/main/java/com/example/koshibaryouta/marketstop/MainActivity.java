@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -15,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity
         extends AppCompatActivity{
@@ -40,6 +42,7 @@ public class MainActivity
                     String str = InputStreamToString(con.getInputStream());
                     // JSONObject に変換します
                     JSONObject json = new JSONObject(str);
+                    parseJson(json);
                     Log.d("HTTP", json.toString(4));
                 } catch(Exception ex) {
                     Log.d("ERROR", "" + ex);
@@ -58,5 +61,22 @@ public class MainActivity
         }
         br.close();
         return sb.toString();
+    }
+
+    public ArrayList parseJson(JSONObject jsonObject){
+        ArrayList storeList = new ArrayList();
+
+        try {
+            JSONArray results = jsonObject.getJSONArray("results");
+            for(int i = 0; i < results.length(); i++){
+                JSONObject result = results.getJSONObject(i);
+                String name = result.getString("name");
+                Log.d("parseJson", name);
+                storeList.add(name);
+            }
+        }catch (Exception ex){
+            Log.d("ERROR", "" + ex);
+        }
+        return storeList;
     }
 }
