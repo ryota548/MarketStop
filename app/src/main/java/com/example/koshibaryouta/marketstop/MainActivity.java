@@ -32,7 +32,6 @@ public class MainActivity
             @Override
             public void run() {
                 try {
-                    // 大阪の天気予報XMLデータ
                     URL url = new URL(new String(urlString));
                     HttpURLConnection con = (HttpURLConnection)url.openConnection();
                     con.connect();
