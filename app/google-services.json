@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "737986469052",
+    "firebase_url": "https://marketstop-148503.firebaseio.com",
+    "project_id": "marketstop-148503",
+    "storage_bucket": "marketstop-148503.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737986469052:android:2978454d4275f303",
+        "android_client_info": {
+          "package_name": "com.example.koshibaryouta.marketstop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737986469052-4jvqgsr9dp8uv4mvoik249dpfgikq2pr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koshibaryouta.marketstop",
+            "certificate_hash": "CF6335C864D4FDE8CC5C5D75C01E481335EF6930"
+          }
+        },
+        {
+          "client_id": "737986469052-cutgdpi1fknqr7og9jrda8i1bg79ure0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwCY4Hz6WMP5vQG-7fa8tX1qSaodFg_NI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737986469052-cutgdpi1fknqr7og9jrda8i1bg79ure0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
